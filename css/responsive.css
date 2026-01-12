@@ -1,0 +1,496 @@
+/* ===================================
+   Responsive Design - Mobile First
+   Base styles are for mobile, progressively enhanced
+   =================================== */
+
+/* ===================================
+   Mobile Styles (< 640px) - Base
+   =================================== */
+
+/* Mobile Navigation */
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background: var(--bg-primary);
+        box-shadow: var(--shadow-xl);
+        padding: var(--spacing-lg) var(--spacing-md);
+        transition: right var(--transition-base);
+        z-index: 1001;
+    }
+
+    .nav-menu.show-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-link {
+        display: block;
+        padding: var(--spacing-sm);
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-close {
+        display: block;
+    }
+
+    /* Hero Section Mobile */
+    .hero {
+        padding-top: calc(var(--header-height) + var(--spacing-md));
+        padding-bottom: var(--spacing-md);
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .hero-content {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: 1;
+    }
+
+    .hero-image-wrapper {
+        max-width: 250px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Section Spacing Mobile */
+    .section {
+        padding: var(--spacing-md) 0;
+    }
+
+    /* Stats Grid Mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    /* Education Grid Mobile */
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Timeline Mobile */
+    .timeline {
+        padding-left: var(--spacing-sm);
+    }
+
+    .timeline-marker {
+        left: -26px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-content {
+        padding: var(--spacing-sm);
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Skills Grid Mobile */
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Publications Grid Mobile */
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact Content Mobile */
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer Mobile */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    /* Back to Top Button Mobile */
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* ===================================
+   Small Mobile (< 480px)
+   =================================== */
+@media screen and (max-width: 480px) {
+    /* Adjust font sizes for very small screens */
+    :root {
+        --fs-5xl: 2rem;
+        --fs-4xl: 1.75rem;
+        --fs-3xl: 1.5rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .nav-logo {
+        font-size: var(--fs-base);
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: var(--fs-base);
+    }
+
+    .hero-description {
+        font-size: var(--fs-base);
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: var(--fs-3xl);
+    }
+
+    .button {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--fs-sm);
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .subsection-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* ===================================
+   Tablet Styles (640px - 1024px)
+   =================================== */
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+    /* Hero Section Tablet */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .hero-content {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: 1;
+    }
+
+    .hero-image-wrapper {
+        max-width: 300px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    /* Stats Grid Tablet */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Skills Grid Tablet */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Publications Grid Tablet */
+    .publications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Social Grid Tablet */
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===================================
+   Desktop Styles (> 1024px)
+   =================================== */
+@media screen and (min-width: 1024px) {
+    /* Container Wider */
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    /* Hero Grid Enhanced */
+    .hero-container {
+        gap: var(--spacing-xl);
+    }
+
+    /* Stats Grid Desktop */
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Skills Grid Desktop */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Publications Grid Desktop */
+    .publications-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Timeline Enhanced */
+    .timeline {
+        padding-left: var(--spacing-lg);
+    }
+
+    .timeline-marker {
+        left: -42px;
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* ===================================
+   Large Desktop (> 1440px)
+   =================================== */
+@media screen and (min-width: 1440px) {
+    :root {
+        --max-width: 1400px;
+    }
+
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .hero {
+        padding-top: calc(var(--header-height) + var(--spacing-xl) + var(--spacing-md));
+    }
+
+    .hero-image-wrapper {
+        max-width: 450px;
+    }
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+    .header,
+    .nav,
+    .hero-buttons,
+    .back-to-top,
+    .footer {
+        display: none;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+
+    .section {
+        page-break-inside: avoid;
+        padding: 1rem 0;
+    }
+
+    .hero {
+        background: none;
+        padding-top: 0;
+    }
+
+    .publication-card,
+    .timeline-item,
+    .skill-card {
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+    }
+}
+
+/* ===================================
+   Landscape Mobile Specific
+   =================================== */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding-top: calc(var(--header-height) + var(--spacing-sm));
+        padding-bottom: var(--spacing-sm);
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .hero-content {
+        order: 1;
+        text-align: left;
+    }
+
+    .hero-image {
+        order: 2;
+    }
+
+    .hero-image-wrapper {
+        max-width: 200px;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start;
+    }
+
+    .button {
+        width: auto;
+    }
+}
+
+/* ===================================
+   Reduced Motion
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===================================
+   Dark Mode Support (Future Enhancement)
+   =================================== */
+@media (prefers-color-scheme: dark) {
+    /* Uncomment to enable automatic dark mode based on system preference
+    :root {
+        --text-primary: #ecf0f1;
+        --text-secondary: #bdc3c7;
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2c2c2c;
+        --bg-tertiary: #3a3a3a;
+        --border-color: #4a4a4a;
+    }
+    */
+}
+
+/* ===================================
+   High Contrast Mode
+   =================================== */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #1e4464;
+        --text-primary: #000000;
+        --border-color: #000000;
+    }
+
+    .button {
+        border-width: 3px;
+    }
+
+    .nav-link {
+        font-weight: 600;
+    }
+}
+
+/* ===================================
+   Hover Support Detection
+   =================================== */
+@media (hover: none) {
+    /* Remove hover effects for touch devices */
+    .button-primary:hover,
+    .button-secondary:hover,
+    .stat-card:hover,
+    .skill-card:hover,
+    .publication-card:hover,
+    .contact-item:hover,
+    .timeline-content:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .social-link:hover {
+        transform: none;
+    }
+
+    .back-to-top:hover {
+        transform: none;
+    }
+}
+
+/* ===================================
+   Touch Device Optimizations
+   =================================== */
+@media (pointer: coarse) {
+    /* Increase touch targets for better accessibility */
+    .nav-link,
+    .button,
+    .social-link,
+    .contact-value {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .back-to-top {
+        width: 55px;
+        height: 55px;
+    }
+}
