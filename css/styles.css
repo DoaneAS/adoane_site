@@ -1,36 +1,58 @@
 /* ===================================
    CSS Variables & Design System
+   Scientific Data Visualization Theme
    =================================== */
 :root {
-    /* Color Palette */
-    --primary-color: #2c5f8d;
-    --primary-dark: #1e4464;
-    --primary-light: #4a90d9;
-    --secondary-color: #4a90d9;
-    --accent-color: #e67e22;
-    --accent-hover: #d35400;
+    /* Scientific Journal Color Palette */
+    --nature-red: #d32f2f;
+    --science-purple: #512da8;
+    --cell-blue: #1976d2;
+    --genetics-green: #388e3c;
+
+    /* Primary Colors - Data Viz Inspired */
+    --primary-color: #1565c0;        /* Deep data blue */
+    --primary-dark: #0d47a1;
+    --primary-light: #42a5f5;
+    --secondary-color: #00897b;      /* Teal accent */
+    --accent-color: #d32f2f;         /* Nature red for emphasis */
+    --accent-hover: #b71c1c;
+
+    /* Data Visualization Colors */
+    --viz-blue: #1976d2;
+    --viz-red: #d32f2f;
+    --viz-green: #388e3c;
+    --viz-purple: #7b1fa2;
+    --viz-orange: #f57c00;
+    --viz-teal: #00897b;
 
     /* Text Colors */
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --text-light: #95a5a6;
+    --text-primary: #212121;         /* True black for precision */
+    --text-secondary: #616161;
+    --text-light: #9e9e9e;
     --text-white: #ffffff;
 
     /* Background Colors */
     --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --bg-tertiary: #ecf0f1;
-    --bg-dark: #34495e;
+    --bg-secondary: #fafafa;         /* Slightly warmer off-white */
+    --bg-tertiary: #f5f5f5;
+    --bg-chart: #fafbfc;             /* Chart background */
+    --bg-dark: #263238;              /* Blue-grey dark */
+    --bg-gradient-start: #e3f2fd;    /* Light blue gradient */
+    --bg-gradient-end: #ffffff;
 
-    /* Border Colors */
-    --border-color: #e1e8ed;
-    --border-light: #ecf0f1;
+    /* Border Colors - Data Grid Inspired */
+    --border-color: #e0e0e0;
+    --border-medium: #bdbdbd;
+    --border-accent: #90caf9;
+    --border-light: #eeeeee;
+    --grid-line: rgba(0, 0, 0, 0.08); /* Subtle grid lines */
 
-    /* Shadow Colors */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* Shadow Colors - More defined for data cards */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 3px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);
+    --shadow-data: 0 2px 4px rgba(25, 118, 210, 0.1); /* Blue-tinted shadow */
 
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -98,6 +120,50 @@ body {
     background-color: var(--bg-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+/* Subtle network pattern background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(25, 118, 210, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(211, 47, 47, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(56, 142, 60, 0.02) 0%, transparent 50%);
+    background-size: 100% 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Data grid overlay for sections */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(0deg, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section {
+    position: relative;
+}
+
+.section > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* ===================================
@@ -163,16 +229,40 @@ em {
     text-align: center;
     margin-bottom: var(--spacing-md);
     position: relative;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
+/* Chart-inspired axis line below title */
 .section-title::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--accent-color);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg,
+        var(--viz-blue) 0%,
+        var(--viz-blue) 33%,
+        var(--viz-red) 33%,
+        var(--viz-red) 66%,
+        var(--viz-green) 66%,
+        var(--viz-green) 100%);
     margin: var(--spacing-sm) auto 0;
-    border-radius: var(--radius-full);
+    border-radius: 0;
+}
+
+/* Data point markers on the axis */
+.section-title::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
+    z-index: 2;
 }
 
 .section-description {
@@ -330,7 +420,29 @@ em {
 .hero {
     padding-top: calc(var(--header-height) + var(--spacing-xl));
     padding-bottom: var(--spacing-xl);
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated data points in hero background */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 10% 20%, var(--viz-blue) 2px, transparent 2px),
+        radial-gradient(circle at 90% 30%, var(--viz-red) 2px, transparent 2px),
+        radial-gradient(circle at 30% 80%, var(--viz-green) 2px, transparent 2px),
+        radial-gradient(circle at 70% 70%, var(--viz-purple) 2px, transparent 2px),
+        radial-gradient(circle at 50% 40%, var(--viz-teal) 2px, transparent 2px);
+    background-size: 100% 100%;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .hero-container {
@@ -414,7 +526,7 @@ em {
     text-align: center;
 }
 
-/* Statistics Grid */
+/* Statistics Grid - Data Viz Style */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -423,18 +535,55 @@ em {
 }
 
 .stat-card {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-sm);
     text-align: center;
-    border: 2px solid var(--border-light);
+    border-left: 4px solid var(--viz-blue);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: var(--shadow-data);
     transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Data bar visualization on hover */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--viz-blue), var(--viz-teal));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-base);
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:nth-child(1) {
+    border-left-color: var(--viz-blue);
+}
+
+.stat-card:nth-child(2) {
+    border-left-color: var(--viz-red);
+}
+
+.stat-card:nth-child(3) {
+    border-left-color: var(--viz-green);
+}
+
+.stat-card:nth-child(4) {
+    border-left-color: var(--viz-purple);
 }
 
 .stat-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-    border-color: var(--primary-light);
 }
 
 .stat-number {
@@ -442,12 +591,16 @@ em {
     color: var(--primary-color);
     margin-bottom: var(--spacing-xs);
     font-weight: 700;
+    letter-spacing: -1px;
 }
 
 .stat-label {
     color: var(--text-secondary);
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 /* Education */
@@ -462,10 +615,27 @@ em {
 }
 
 .education-card {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
-    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--viz-purple);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-data);
+    transition: all var(--transition-base);
+}
+
+.education-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-left-width: 6px;
+}
+
+.education-card:nth-child(1) {
+    border-left-color: var(--viz-blue);
+}
+
+.education-card:nth-child(2) {
+    border-left-color: var(--viz-teal);
 }
 
 .education-degree {
@@ -492,13 +662,50 @@ em {
     background: var(--bg-secondary);
 }
 
-/* Current Position */
+/* Current Position - Featured Data Card */
 .current-position {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-sm);
     margin-bottom: var(--spacing-lg);
     color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary-light);
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+}
+
+/* Data visualization pattern overlay */
+.current-position::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.03) 10px,
+            rgba(255, 255, 255, 0.03) 20px
+        );
+    pointer-events: none;
+}
+
+/* Accent bar */
+.current-position::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        var(--viz-red),
+        var(--viz-purple),
+        var(--viz-teal));
 }
 
 .position-header {
@@ -535,21 +742,26 @@ em {
     opacity: 0.9;
 }
 
-/* Timeline */
+/* Timeline - Data Viz Style */
 .timeline {
     position: relative;
     padding-left: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
 }
 
+/* Y-axis line like in a chart */
 .timeline::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: var(--border-color);
+    width: 3px;
+    background: linear-gradient(180deg,
+        var(--viz-blue) 0%,
+        var(--viz-teal) 50%,
+        var(--viz-green) 100%);
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.2);
 }
 
 .timeline-item {
@@ -561,28 +773,68 @@ em {
     padding-bottom: 0;
 }
 
+/* Data point marker */
 .timeline-marker {
     position: absolute;
-    left: -34px;
+    left: -36px;
     top: 0;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: var(--radius-full);
-    background: var(--primary-color);
-    border: 3px solid var(--bg-secondary);
+    background: var(--bg-primary);
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    z-index: 2;
+    transition: all var(--transition-base);
+}
+
+.timeline-item:hover .timeline-marker {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(25, 118, 210, 0.2);
+}
+
+/* Color-code timeline markers by position */
+.timeline-item:nth-child(1) .timeline-marker {
+    border-color: var(--viz-blue);
+}
+
+.timeline-item:nth-child(2) .timeline-marker {
+    border-color: var(--viz-teal);
+}
+
+.timeline-item:nth-child(3) .timeline-marker {
+    border-color: var(--viz-green);
 }
 
 .timeline-content {
     background: var(--bg-primary);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-data);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
     transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Subtle grid pattern on timeline cards */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(0deg, transparent 24px, var(--grid-line) 25px, transparent 26px);
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .timeline-content:hover {
     box-shadow: var(--shadow-md);
     transform: translateX(4px);
+    border-left-width: 5px;
 }
 
 .timeline-header {
@@ -648,14 +900,54 @@ em {
 .skill-card {
     background: var(--bg-primary);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-data);
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--viz-blue);
     transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Progress bar style accent */
+.skill-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--viz-blue) 0%,
+        var(--viz-blue) 85%,
+        transparent 85%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+.skill-card:nth-child(1) {
+    border-top-color: var(--viz-blue);
+}
+
+.skill-card:nth-child(2) {
+    border-top-color: var(--viz-orange);
+}
+
+.skill-card:nth-child(3) {
+    border-top-color: var(--viz-green);
+}
+
+.skill-card:nth-child(4) {
+    border-top-color: var(--viz-purple);
 }
 
 .skill-card:hover {
     box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    border-top-width: 5px;
 }
 
 .skill-title {
@@ -699,18 +991,44 @@ em {
 }
 
 .publication-card {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
-    border-top: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-data);
     transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Citation count bar visualization (decorative) */
+.publication-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        var(--viz-blue) 30%,
+        var(--viz-blue) 70%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.publication-card:hover::before {
+    opacity: 1;
 }
 
 .publication-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+    border-left-width: 6px;
 }
 
 .publication-journal {
